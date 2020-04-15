@@ -1,0 +1,19 @@
+{
+  "name": "util-backend",
+  "version": "1.0.0",
+  "description": "Backend to serve static files and resources through rest api",
+  "main": "src/index.js",
+  "repository": "https://github.com/JonasFreireAlcantara/util-backend.git",
+  "author": "Jonas Freire",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.3"
+  }
+}
