@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" href="./css/styles.css" />
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <title>Editor Saltério</title>
   </head>
   <body>
@@ -35,11 +37,9 @@
         <label for="cipher-checkbox">Cifra</label>
       </div>
 
-      <button
-        onclick="console.log('Button pressed')"
-        class="button"
-        type="button"
-      >
+      <div class="hidden" id="message-div"></div>
+
+      <button onclick="sendPsalm()" class="button" type="button">
         Submeter Salmo
       </button>
     </main>

@@ -1,7 +1,43 @@
+const BACKEND_DOMAIN = "http://localhost:3333/api";
+
+function sendPsalm() {
+  const pass = verifyDataStructure();
+
+  const input = document.getElementById("user-input");
+  const cipher = document.getElementById("cipher-checkbox");
+  const info = document.getElementById("message-div");
+
+  if (!pass) {
+    info.innerText = "Formato Inválido";
+    info.className = "warn";
+    return;
+  }
+
+  const psalmsElements = extractPsalmsElements(input.value, cipher.checked);
+
+  axios
+    .post(`${BACKEND_DOMAIN}/psalms`, psalmsElements)
+    .then((response) => {
+      console.log("psalm created");
+    })
+    .catch((error) => {
+      console.log({ error });
+    });
+
+  console.log("sendPsalm");
+}
+
+function verifyDataStructure() {
+  return true;
+}
+
 function updateOutput() {
   const input = document.getElementById("user-input");
   const output = document.getElementById("user-output");
   const cipher = document.getElementById("cipher-checkbox");
+  const info = document.getElementById("message-div");
+
+  info.className = "hidden";
 
   const psalmsElements = extractPsalmsElements(input.value, cipher.checked);
 
