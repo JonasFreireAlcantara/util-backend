@@ -39,15 +39,10 @@ function extractPsalmsElements(string, cipher) {
     } else {
       // add new verse to stanza
       if (cipher) {
-        currentStanza.push({
-          cipher: line,
-          text: lines[k + 1],
-        });
+        currentStanza.push(arrayOfCipherCharacter(line, lines[k + 1]));
         k++;
       } else {
-        currentStanza.push({
-          text: line,
-        });
+        currentStanza.push(arrayOfCipherCharacter(undefined, line));
       }
     }
   }
@@ -56,6 +51,29 @@ function extractPsalmsElements(string, cipher) {
   stanzas.shift();
 
   return { title, stanzas };
+}
+
+function arrayOfCipherCharacter(lineCipher, lineText) {
+  if (!lineCipher) {
+    return lineText.split("").map((character) => ({ text: character }));
+  }
+
+  if (lineText.length > lineCipher.length) {
+    lineCipher = lineCipher.padEnd(lineText.length, " ");
+  } else {
+    lineText = lineText.padEnd(lineCipher.length, " ");
+  }
+
+  const array = [];
+
+  for (let k = 0; k < lineText.length; k++) {
+    array.push({
+      cipher: lineCipher[k],
+      text: lineText[k],
+    });
+  }
+
+  return array;
 }
 
 /**
@@ -76,13 +94,21 @@ function generateHTML(psalmsElements) {
 
     for (let i = 0; i < stanza.length; i++) {
       const verse = stanza[i];
-      const { cipher, text } = verse;
 
       html += "<div class='verse'>";
 
-      html += cipher
-        ? `<p class='cipher'>${cipher}</p><p class='text'>${text}</p>`
-        : `<p class='text'>${text}</p>`;
+      for (let j = 0; j < verse.length; j++) {
+        const element = verse[j];
+        const { cipher, text } = element;
+
+        html += "<div class='element'>";
+
+        html += cipher
+          ? `<p class='cipher'>${cipher}</p><p class='text'>${text}</p>`
+          : `<p class='text'>${text}</p>`;
+
+        html += "</div>";
+      }
 
       html += "</div>";
     }

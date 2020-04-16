@@ -87,6 +87,19 @@ main > section {
 
 .verse {
   margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.element {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* background-color: #3d47fc; */
+
+  white-space: pre;
+  font-family: monospace;
 }
 
 .cipher {
@@ -96,11 +109,13 @@ main > section {
   font-family: monospace;
   font-size: 12px;
   margin: 0;
+  /* background-color: chartreuse; */
 }
 
 .text {
   color: #5a5a5a;
   font-size: 12px;
   font-family: monospace;
-  margin: 5px 0px;
+  margin: 0;
+  /* background-color: brown; */
 }
