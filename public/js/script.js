@@ -49,7 +49,7 @@ function updateOutput() {
 
   output.innerHTML = generatedHTML;
 
-  // console.log(psalmsElements);
+  console.log(psalmsElements);
   // console.log(generatedHTML);
 }
 
@@ -79,10 +79,10 @@ function extractPsalmsElements(string, cipher) {
     } else {
       // add new verse to stanza
       if (cipher) {
-        currentStanza.push(equalizeStringLength(line, lines[k + 1]));
+        currentStanza.push(extractVerse(line, lines[k + 1]));
         k++;
       } else {
-        currentStanza.push(equalizeStringLength(undefined, line));
+        currentStanza.push(extractVerse(undefined, line));
       }
     }
   }
@@ -93,7 +93,7 @@ function extractPsalmsElements(string, cipher) {
   return { title, stanzas };
 }
 
-function equalizeStringLength(cipher, text) {
+function extractVerse(cipher, text) {
   if (!cipher) {
     return { text };
   }
