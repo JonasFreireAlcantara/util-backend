@@ -6,12 +6,10 @@ const PsalmSchema = new mongoose.Schema({
   stanzas: [
     [
       [
-        [
-          {
-            cipher: String,
-            text: String,
-          },
-        ],
+        {
+          cipher: String,
+          text: String,
+        },
       ],
     ],
   ],

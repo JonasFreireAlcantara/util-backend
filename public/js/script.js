@@ -9,7 +9,7 @@ function sendPsalm() {
 
   if (!pass) {
     info.innerText = "Formato Inválido";
-    info.className = "warn";
+    info.className = "fail";
     return;
   }
 
@@ -19,9 +19,13 @@ function sendPsalm() {
     .post(`${BACKEND_DOMAIN}/psalms`, psalmsElements)
     .then((response) => {
       console.log("psalm created");
+      info.innerText = "Salmo enviado com sucesso !";
+      info.className = "sucess";
     })
     .catch((error) => {
       console.log({ error });
+      info.innerText = "Houve algum problema ...";
+      info.className = "fail";
     });
 
   console.log("sendPsalm");
@@ -45,8 +49,8 @@ function updateOutput() {
 
   output.innerHTML = generatedHTML;
 
-  console.log(extractPsalmsElements(input.value));
-  console.log(generatedHTML);
+  // console.log(psalmsElements);
+  // console.log(generatedHTML);
 }
 
 /**
@@ -75,10 +79,10 @@ function extractPsalmsElements(string, cipher) {
     } else {
       // add new verse to stanza
       if (cipher) {
-        currentStanza.push(arrayOfCipherCharacter(line, lines[k + 1]));
+        currentStanza.push(equalizeStringLength(line, lines[k + 1]));
         k++;
       } else {
-        currentStanza.push(arrayOfCipherCharacter(undefined, line));
+        currentStanza.push(equalizeStringLength(undefined, line));
       }
     }
   }
@@ -89,27 +93,18 @@ function extractPsalmsElements(string, cipher) {
   return { title, stanzas };
 }
 
-function arrayOfCipherCharacter(lineCipher, lineText) {
-  if (!lineCipher) {
-    return lineText.split("").map((character) => ({ text: character }));
+function equalizeStringLength(cipher, text) {
+  if (!cipher) {
+    return { text };
   }
 
-  if (lineText.length > lineCipher.length) {
-    lineCipher = lineCipher.padEnd(lineText.length, " ");
+  if (text.length > cipher.length) {
+    cipher = cipher.padEnd(text.length, " ");
   } else {
-    lineText = lineText.padEnd(lineCipher.length, " ");
+    text = text.padEnd(cipher.length, " ");
   }
 
-  const array = [];
-
-  for (let k = 0; k < lineText.length; k++) {
-    array.push({
-      cipher: lineCipher[k],
-      text: lineText[k],
-    });
-  }
-
-  return array;
+  return { cipher, text };
 }
 
 /**
@@ -117,9 +112,9 @@ function arrayOfCipherCharacter(lineCipher, lineText) {
  * @param {object containing the title and stanzas properties} psalmsElements
  */
 function generateHTML(psalmsElements) {
-  let html = "";
-
   const { title, stanzas } = psalmsElements;
+
+  let html = "";
 
   html += `<div class='title'>${title}</div>`;
 
@@ -130,18 +125,17 @@ function generateHTML(psalmsElements) {
 
     for (let i = 0; i < stanza.length; i++) {
       const verse = stanza[i];
+      const { cipher, text } = verse;
 
       html += "<div class='verse'>";
 
-      for (let j = 0; j < verse.length; j++) {
-        const element = verse[j];
-        const { cipher, text } = element;
-
+      for (let j = 0; j < text.length; j++) {
         html += "<div class='element'>";
 
-        html += cipher
-          ? `<p class='cipher'>${cipher}</p><p class='text'>${text}</p>`
-          : `<p class='text'>${text}</p>`;
+        if (cipher) {
+          html += `<p class='cipher'>${cipher[j]}</p>`;
+        }
+        html += `<p class='text'>${text[j]}</p>`;
 
         html += "</div>";
       }
