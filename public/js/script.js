@@ -1,4 +1,4 @@
-const BACKEND_DOMAIN = "http://localhost:3333/api";
+const BACKEND_DOMAIN = "https://jonas-backend.herokuapp.com/api";
 
 function sendPsalm() {
   const pass = verifyDataStructure();
