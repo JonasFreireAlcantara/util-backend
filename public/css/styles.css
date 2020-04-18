@@ -8,7 +8,6 @@ body {
 
   background-color: #eee;
 
-  width: 100vw;
   height: 100vh;
 
   font-family: Arial, Helvetica, sans-serif;
@@ -30,8 +29,13 @@ main > section {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 90%;
   height: fit-content;
+}
+
+.explanation {
+  width: 500px;
+  margin: 20px 0;
 }
 
 #user-input,
@@ -40,13 +44,21 @@ main > section {
   flex-direction: column;
   box-sizing: border-box;
   background-color: #fff;
-  margin: auto;
-  width: 40%;
   min-height: 500px;
   border: 1px solid #000;
   border-radius: 3px;
-  resize: vertical;
+  resize: none;
   padding: 5px;
+}
+
+#user-input {
+  flex: 0.9;
+  margin-right: 10px;
+}
+
+#user-output {
+  width: 400px;
+  min-width: 400px;
 }
 
 .cipher-checkbox-container {

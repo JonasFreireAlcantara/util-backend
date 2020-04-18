@@ -15,6 +15,18 @@
     <header>
       <h1>Editor Saltério Brasileiro</h1>
 
+      <p class="explanation">A primeira linha conterá o título do salmo.</p>
+      <p class="explanation">
+        As músicas serão divididas por estrofes, cada estrofe é delimitada pelo
+        símbolo <code>---</code> este servirá como marcador para o início/fim de
+        estrofe.
+      </p>
+      <p class="explanation">
+        Cada estrofe conterá um ou mais versos, para músicas sem cifra cada
+        linha corresponderá a apenas um verso, se a música tiver cifra existirá
+        um par de linhas (2 linhas) para cada verso, a linha de cima será a
+        cifra e a de baixo será o texto.
+      </p>
       <p>
         Para adicionar um novo salmo, é só seguir o seguinte exemplo mostrado
         abaixo:
@@ -23,7 +35,18 @@
 
     <main>
       <section>
-        <textarea oninput="updateOutput()" id="user-input"></textarea>
+        <textarea oninput="updateOutput()" id="user-input">
+(Título)
+---
+(1º verso sem cifra)
+(2º verso sem cifra)
+---
+(1º verso com cifra)G D   E Em
+(1º verso com cifra)Óh quão interessante
+(2º verso com cifra)C  D  E4  E
+(2º verso com cifra)Óh quão desinteressante
+---</textarea
+        >
         <div id="user-output"></div>
       </section>
 
@@ -31,6 +54,7 @@
         <input
           onchange="updateOutput()"
           type="checkbox"
+          checked
           name="cifrado"
           id="cipher-checkbox"
         />

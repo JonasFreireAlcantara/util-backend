@@ -1,4 +1,5 @@
-const BACKEND_DOMAIN = "https://jonas-backend.herokuapp.com/api";
+// const BACKEND_DOMAIN = "https://jonas-backend.herokuapp.com/api";
+const BACKEND_DOMAIN = "https://localhost:3333/api";
 
 function sendPsalm() {
   const pass = verifyDataStructure();
@@ -68,7 +69,7 @@ function extractPsalmsElements(string, cipher) {
   const stanzas = [];
   let currentStanza = [];
 
-  for (let k = 0; k < lines.length; k++) {
+  for (let k = 1; k < lines.length; k++) {
     const line = lines[k];
 
     if (line.length === 0) {
@@ -148,3 +149,5 @@ function generateHTML(psalmsElements) {
 
   return html;
 }
+
+updateOutput();
