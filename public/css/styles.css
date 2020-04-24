@@ -29,8 +29,20 @@ main > section {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: 100%;
   height: fit-content;
+}
+
+.meta-input {
+  /* background-color: coral; */
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.meta-input input {
+  margin-top: 10px;
 }
 
 .explanation {
@@ -52,7 +64,7 @@ main > section {
 }
 
 #user-input {
-  flex: 0.9;
+  flex: 1;
   margin-right: 10px;
 }
 
@@ -64,10 +76,13 @@ main > section {
 .cipher-checkbox-container {
   margin-top: 10px;
   margin-right: auto;
-  margin-left: 30px;
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.cipher-checkbox-container > input {
+  margin-left: 0;
 }
 
 .cipher-checkbox-container > label {
@@ -119,9 +134,16 @@ main > section {
 .title {
   color: #5a5a5a;
   font-weight: bold;
-  font-size: 20;
-  margin: 30px 0px;
+  font-size: 20px;
+  margin: 25px 0px;
   text-align: center;
+}
+
+.meta-info {
+  /* background-color: cornflowerblue; */
+  color: #5a5a5a;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 .stanza {

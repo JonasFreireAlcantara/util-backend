@@ -15,21 +15,20 @@
     <header>
       <h1>Editor Saltério Brasileiro</h1>
 
-      <p class="explanation">A primeira linha conterá o título do salmo.</p>
       <p class="explanation">
-        As músicas serão divididas por estrofes, cada estrofe é delimitada pelo
-        símbolo <code>---</code> este servirá como marcador para o início/fim de
-        estrofe.
+        A primeira linha conterá o título do salmo.
       </p>
       <p class="explanation">
-        Cada estrofe conterá um ou mais versos, para músicas sem cifra cada
-        linha corresponderá a apenas um verso, se a música tiver cifra existirá
-        um par de linhas (2 linhas) para cada verso, a linha de cima será a
-        cifra e a de baixo será o texto.
+        As músicas serão divididas por estrofes, cada estrofe é delimitada pelo símbolo
+        <code>---</code> este servirá como marcador para o início/fim de estrofe.
+      </p>
+      <p class="explanation">
+        Cada estrofe conterá um ou mais versos, para músicas sem cifra cada linha corresponderá a apenas um verso, se a
+        música tiver cifra existirá um par de linhas (2 linhas) para cada verso, a linha de cima será a cifra e a de
+        baixo será o texto.
       </p>
       <p>
-        Para adicionar um novo salmo, é só seguir o seguinte exemplo mostrado
-        abaixo:
+        Para adicionar um novo salmo, é só seguir o seguinte exemplo mostrado abaixo:
       </p>
     </header>
 
@@ -45,24 +44,26 @@
 (1º verso com cifra)Óh quão interessante
 (2º verso com cifra)C  D  E4  E
 (2º verso com cifra)Óh quão desinteressante
----</textarea
+---
+</textarea
         >
         <div id="user-output"></div>
       </section>
 
       <div class="cipher-checkbox-container">
-        <input
-          onchange="updateOutput()"
-          type="checkbox"
-          checked
-          name="cifrado"
-          id="cipher-checkbox"
-        />
+        <input oninput="updateOutput()" type="checkbox" checked name="cifrado" id="cipher-checkbox" />
         <label for="cipher-checkbox">Cifra</label>
       </div>
 
-      <div class="hidden" id="message-div"></div>
+      <div class="meta-input">
+        <input type="text" placeholder="Melodia" id="melody" oninput="updateOutput()" />
+        <input type="text" placeholder="Métrica" id="metric" oninput="updateOutput()" />
+        <input type="text" placeholder="Compositor" id="composer" oninput="updateOutput()" />
+        <input type="text" placeholder="Harmonização" id="harmonization" oninput="updateOutput()" />
+        <input type="text" placeholder="Letra" id="letter" oninput="updateOutput()" />
+      </div>
 
+      <div class="hidden" id="message-div"></div>
       <button onclick="sendPsalm()" class="button" type="button">
         Submeter Salmo
       </button>

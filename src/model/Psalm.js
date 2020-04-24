@@ -3,6 +3,12 @@ const mongoose = require("mongoose");
 const PsalmSchema = new mongoose.Schema({
   title: String,
 
+  composer: String,
+  harmonization: String,
+  melody: String,
+  metric: String,
+  letter: String,
+
   stanzas: [
     [
       {
