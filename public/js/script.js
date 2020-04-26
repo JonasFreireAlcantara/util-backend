@@ -14,7 +14,7 @@ function sendPsalm() {
     return;
   }
 
-  const { title, stanzas, melody, metric, composer, harmonization, letter } = extractPsalmsElements();
+  const { title, stanzas, melody, metric, composer, harmonization, letter, url } = extractPsalmsElements();
 
   const psalmsElements = { title, stanzas };
 
@@ -32,6 +32,9 @@ function sendPsalm() {
   }
   if (letter.length > 0) {
     psalmsElements.letter = letter;
+  }
+  if (url.length > 0) {
+    psalmsElements.url = url;
   }
 
   console.log({ psalmsElements });
@@ -88,6 +91,7 @@ function extractPsalmsElements() {
   const composer = document.getElementById("composer").value;
   const harmonization = document.getElementById("harmonization").value;
   const letter = document.getElementById("letter").value;
+  const url = document.getElementById("url").value;
 
   const lines = string.split("\n");
 
@@ -126,6 +130,7 @@ function extractPsalmsElements() {
     harmonization,
     composer,
     letter,
+    url,
   };
 }
 

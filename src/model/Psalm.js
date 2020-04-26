@@ -9,6 +9,8 @@ const PsalmSchema = new mongoose.Schema({
   metric: String,
   letter: String,
 
+  url: String,
+
   stanzas: [
     [
       {
