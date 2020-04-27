@@ -59,7 +59,6 @@ main > section {
   min-height: 500px;
   border: 1px solid #000;
   border-radius: 3px;
-  resize: none;
   padding: 5px;
 }
 
@@ -147,7 +146,7 @@ main > section {
 }
 
 .stanza {
-  margin-top: 10px;
+  margin-top: 40px;
 }
 
 .verse {
