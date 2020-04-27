@@ -24,6 +24,11 @@ module.exports = {
   async create(req, res) {
     const psalm = req.body;
 
+    const search = await Psalm.findOne({ title: psalm.title });
+    if (search) {
+      await Psalm.findOneAndDelete({ title: psalm.title });
+    }
+
     const result = await Psalm.create(psalm);
 
     return res.json({ result });
