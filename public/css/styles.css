@@ -14,13 +14,20 @@ body {
 }
 
 header {
-  font-size: 15px;
+  width: 500px;
 }
 
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#choice-psalm {
+  margin-right: auto;
+  margin-bottom: 30px;
+  width: 550px;
+  border-radius: 8px;
 }
 
 main > section {
@@ -46,7 +53,7 @@ main > section {
 }
 
 .explanation {
-  width: 500px;
+  font-size: 15px;
   margin: 20px 0;
 }
 

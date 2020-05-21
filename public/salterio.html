@@ -9,6 +9,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+    <link href="https://unpkg.com/tabulator-tables@4.6.3/dist/css/tabulator.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.6.3/dist/js/tabulator.min.js"></script>
+
     <title>Editor Saltério</title>
   </head>
   <body>
@@ -27,12 +30,21 @@
         música tiver cifra existirá um par de linhas (2 linhas) para cada verso, a linha de cima será a cifra e a de
         baixo será o texto.
       </p>
-      <p>
+      <p class="explanation">
         Para adicionar um novo salmo, é só seguir o seguinte exemplo mostrado abaixo:
       </p>
     </header>
 
     <main>
+      <fieldset id="choice-psalm">
+        <legend>Editar Salmo</legend>
+        <p class="explanation">
+          Para editar um salmo clique em um dos salmos na tabela abaixo, efetue as mudanças necessárias depois pressione
+          o botão <i>Submeter Salmo</i>
+        </p>
+        <div id="psalm-table"></div>
+      </fieldset>
+
       <section>
         <textarea oninput="updateOutput()" id="user-input">
 (Título)

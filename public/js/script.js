@@ -1,6 +1,16 @@
 const BACKEND_DOMAIN = "https://jonas-backend.herokuapp.com/api";
 // const BACKEND_DOMAIN = "http://localhost:3333/api";
 
+const table = new Tabulator("#psalm-table", {
+  ajaxURL: "https://jonas-backend.herokuapp.com/api/psalms",
+  columns: [{ title: "Salmo", field: "title", hozAlign: "left" }],
+  height: "300px",
+  layout: "fitColumns",
+  rowClick: (event, psalm) => {
+    fillFields(psalm._row.data);
+  },
+});
+
 function sendPsalm() {
   const pass = verifyDataStructure();
 
@@ -132,6 +142,60 @@ function extractPsalmsElements() {
     letter,
     url,
   };
+}
+
+function isCiphered(psalm) {
+  const { stanzas } = psalm;
+  const { cipher } = stanzas[0][0];
+
+  return cipher !== undefined;
+}
+
+function generateTitleAndStanzas(psalm) {
+  const { title, stanzas } = psalm;
+
+  let string = title + "\n";
+  string += "---\n";
+
+  stanzas.forEach((stanza) => {
+    stanza.forEach((verse) => {
+      const { cipher, text } = verse;
+      string += !cipher ? "" : cipher + "\n";
+      string += text + "\n";
+    });
+
+    string += "---\n";
+  });
+
+  return string;
+}
+
+function fillFields(psalm) {
+  const stringElement = document.getElementById("user-input");
+  const cipherElement = document.getElementById("cipher-checkbox");
+  const melodyElement = document.getElementById("melody");
+  const metricElement = document.getElementById("metric");
+  const composerElement = document.getElementById("composer");
+  const harmonizationElement = document.getElementById("harmonization");
+  const letterElement = document.getElementById("letter");
+  const urlElement = document.getElementById("url");
+
+  const { melody = "", metric = "", composer = "", harmonization = "", letter = "", url = "" } = psalm;
+
+  if (isCiphered(psalm)) {
+    cipherElement.checked = true;
+  }
+
+  stringElement.value = generateTitleAndStanzas(psalm);
+
+  melodyElement.value = melody;
+  metricElement.value = metric;
+  composerElement.value = composer;
+  harmonizationElement.value = harmonization;
+  letterElement.value = letter;
+  urlElement.value = url;
+
+  updateOutput();
 }
 
 function extractVerse(cipher, text) {
