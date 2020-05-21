@@ -1,5 +1,5 @@
-const BACKEND_DOMAIN = "https://jonas-backend.herokuapp.com/api";
-// const BACKEND_DOMAIN = "http://localhost:3333/api";
+// const BACKEND_DOMAIN = "https://jonas-backend.herokuapp.com/api";
+const BACKEND_DOMAIN = "http://localhost:3333/api";
 
 const table = new Tabulator("#psalm-table", {
   ajaxURL: "https://jonas-backend.herokuapp.com/api/psalms",
@@ -17,6 +17,8 @@ function sendPsalm() {
   const input = document.getElementById("user-input");
   const cipher = document.getElementById("cipher-checkbox");
   const info = document.getElementById("message-div");
+
+  const password = document.getElementById("password").value;
 
   if (!pass) {
     info.innerText = "Formato Inválido";
@@ -50,7 +52,9 @@ function sendPsalm() {
   console.log({ psalmsElements });
 
   axios
-    .post(`${BACKEND_DOMAIN}/psalms`, psalmsElements)
+    .post(`${BACKEND_DOMAIN}/psalms`, psalmsElements, {
+      headers: { Authorization: password },
+    })
     .then((response) => {
       console.log("psalm created");
       info.innerText = "Salmo enviado com sucesso !";

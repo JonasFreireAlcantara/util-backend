@@ -24,6 +24,12 @@ module.exports = {
   async create(req, res) {
     const psalm = req.body;
 
+    const { authorization } = req.headers;
+    const password = process.env.PASSWORD;
+    if (authorization !== password) {
+      return res.status(403).json({ error: "Access Denied" });
+    }
+
     const search = await Psalm.findOne({ title: psalm.title });
     if (search) {
       await Psalm.findOneAndDelete({ title: psalm.title });
